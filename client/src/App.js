@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
-
+import {
+  MinChatUiProvider,
+  MainContainer,
+  MessageInput,
+  MessageContainer,
+  MessageList,
+  MessageHeader
+} from "@minchat/react-chat-ui";
+Pdash
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <MinChatUiProvider theme="#6ea9d7">
+      <MainContainer style={{ height: '100vh' }}>
+        <MessageContainer>
+          <MessageHeader />
+          <MessageList
+            currentUserId='dan'
+            messages={[{
+              text: 'Hello',
+              user: {
+                id: 'mark',
+                name: 'Markus',
+              },
+            }]}
+          />
+          <MessageInput placeholder="Type message here" />
+        </MessageContainer>
+      </MainContainer>
+    </MinChatUiProvider>
+  )
 }
 
-export default App;
+export default App
+
