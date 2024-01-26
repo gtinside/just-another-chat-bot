@@ -6,17 +6,25 @@ from web_search import WebSearchHandler
 class RequestHandler(BaseHTTPRequestHandler):
     web_search_handler = WebSearchHandler(os.environ['SUBSCRIPTION_KEY'])
     llm_message_handler = LLMMessageHandler(os.environ['ANYSCALE_API_KEY'])
-    
+
+    def do_OPTIONS(self):    
+        self.send_response(200, "ok")
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', '*')
+        self.send_header("Access-Control-Allow-Headers", "*")
+        self.end_headers()
+        
     def do_POST(self):
+        self.send_response(200)
+        self.send_header('Content-type','text/html')
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.end_headers()
         content_length = int(self.headers['Content-Length'])
         post_data_bytes = self.rfile.read(content_length)
         post_data_str = post_data_bytes.decode("UTF-8")
 
         print(post_data_str)
-        self.send_response(200)
-        self.send_header('Content-type','text/html')
-        self.send_header('Access-Control-Allow-Origin', '*')
-        self.end_headers()
+       
 
         # Step 1 is to search the web
         myDict = RequestHandler.web_search_handler.web_search(post_data_str)
