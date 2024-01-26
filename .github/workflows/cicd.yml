@@ -25,10 +25,10 @@ jobs:
          pip install -r server/requirements.txt
 
       - name: Build Docker image for the server
-        run: docker build -t bot-server:latest server/
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/bot-server:latest server/
     
       - name: Build Docker image for the cient
-        run: docker build -t bot-client:latest client/
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/bot-client:latest client/
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
