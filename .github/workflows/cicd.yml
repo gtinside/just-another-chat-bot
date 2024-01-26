@@ -37,7 +37,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Server Docker image
-        run: docker push bot-server:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/bot-server:latest
     
       - name: Push Client Docker image
-        run: docker push bot-client:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/bot-client:latest
