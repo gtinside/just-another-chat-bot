@@ -17,5 +17,5 @@ The bot will allow you to search the internet
 - AnyScale API
 
 ### Demo
-<video src="assets/Just-Another-Bot.mp4" controls="controls" style="max-width: 720px;">
-</video>
+https://github.com/gtinside/just-another-chat-bot/assets/9381570/8ac80db1-01f7-43c5-a7cb-99d3ea977026
+
