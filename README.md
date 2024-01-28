@@ -17,4 +17,4 @@ The bot will allow you to search the internet
 - AnyScale API
 
 ### Demo
-![](Just-Another-Bot.mp4)
+![](/assets/Just-Another-Bot.mp4)
