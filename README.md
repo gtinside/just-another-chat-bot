@@ -17,5 +17,5 @@ The bot will allow you to search the internet
 - AnyScale API
 
 ### Demo
-<video src="assets/Just-Another-Bot.mp4" controls="controls" style="max-width: 730px;">
+<video src="assets/Just-Another-Bot.mp4" controls="controls" style="max-width: 720px;">
 </video>
