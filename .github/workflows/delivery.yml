@@ -1,0 +1,35 @@
+name: Deploy to Kubernetes
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+    create_secret:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Create Kubernetes Secret
+              env:
+                    SUBSCRIPTION_KEY: ${{ secrets.SUBSCRIPTION_KEY }}
+                    ANYSCALE_API_KEY: ${{ secrets.ANYSCALE_API_KEY }}
+              run: |
+                kubectl create secret generic my-secret --from-literal=subscription-key=$SUBSCRIPTION_KEY --from-literal=anyscale-api-key=$ANYSCALE_API_KEY
+
+    deploy:
+        needs: create_secret
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+
+        - uses: actions-hub/kubectl@master
+          env:
+            KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+          with:
+            args: apply deployment/deployment.yaml
