@@ -27,7 +27,11 @@ class RequestHandler(BaseHTTPRequestHandler):
        
 
         # Step 1 is to search the web
-        myDict = RequestHandler.web_search_handler.web_search(post_data_str)
+        try:
+            myDict = RequestHandler.web_search_handler.web_search(post_data_str)
+        except ValueError:
+            self.wfile.write(bytes("No results found, try again", "utf8"))
+            return
         
         url = [i for i in myDict.keys()]
         data = [s for s in myDict.values()]

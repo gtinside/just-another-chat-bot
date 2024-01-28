@@ -11,7 +11,11 @@ class WebSearchHandler:
     def web_search(self, query):
         data = self.client.web.search(query=query, answer_count=5)
         dataDict = defaultdict(str)
-        for v in data.web_pages.value:
-            dataDict[v.url] = v.snippet
-        print(len(dataDict))
-        return dataDict
+        try:
+            for v in data.web_pages.value:
+                dataDict[v.url] = v.snippet
+            print(len(dataDict))
+            return dataDict
+        except Exception as e:
+            print(e)
+            raise ValueError("No results found, try again")
