@@ -14,4 +14,7 @@ The bot will allow you to search the internet
 ### Dependencies
 - @minchat/react-chat-ui
 - Bing APIs SDK for Python
+- AnyScale API
 
+### Demo
+![](Just-Another-Bot.mp4)
