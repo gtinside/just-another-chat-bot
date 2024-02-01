@@ -41,6 +41,9 @@ The three predominant methods of summarization include:
 3. The backend subsequently executes steps 3.a to 3.f outlined in the preceding section.
 
 #### Demo
+https://github.com/gtinside/just-another-chat-bot/assets/9381570/e892cc27-aef9-4e4e-a430-3e25aa60eb15
+
+
 
 ### Search within a document
 
