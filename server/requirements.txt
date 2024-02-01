@@ -1,2 +1,8 @@
 openai
 microsoft-bing-websearch
+langchain
+pypdf
+sentence_transformers
+textract
+chromadb
+scikit-learn

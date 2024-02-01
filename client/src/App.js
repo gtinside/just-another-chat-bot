@@ -19,17 +19,36 @@ function App() {
     }
   ]);
 
+  const [fileName, setFileName] = useState('');
+  const [fullFilePath, setFullFilePath] = useState('');
+
+  const uploadFile = (file) => {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.click();
+
+    fileInput.addEventListener('change', (event) => {
+      console.log(event.target.files);
+      const selectedFile = event.target.files[0];
+      setFileName(selectedFile.name);
+      setFullFilePath(selectedFile)
+    });
+  };
+
   const handleSubmit = (message) => {
     // Handle the message submission logic here
     console.log("Message submitted:", message);
+    console.log("File Uploaded:", fileName)
+
+    const formData = new FormData();
+    if (fileName !== '') {
+      formData.append('file', fullFilePath);
+    }
+    formData.append('query', message);
 
     fetch('http://localhost:8000', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      body: JSON.stringify({ message })
+      body: formData
     })
       .then(response => response.text())
       .then(data => {
@@ -68,7 +87,8 @@ function App() {
             currentUserId='user'
             messages={messages}
           />
-          <MessageInput placeholder="Type message here" onSendMessage={handleSubmit}/>
+          <input type="text" name="fileName" value={fileName} readOnly />
+          <MessageInput placeholder="Type message here" onSendMessage={handleSubmit} onAttachClick={uploadFile}/>
         </MessageContainer>
       </MainContainer>
     </MinChatUiProvider>
