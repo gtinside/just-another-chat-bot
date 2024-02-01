@@ -9,7 +9,7 @@ class LLMMessageHandler:
         return self.generic_handler(system_prompt="Summarize the given input in less than 20 words", message=message)
     
     def handle_summarization(self, message):
-        return self.generic_handler(system_prompt="Given a set of paragraphs, summarize the main ideas and key information concisely. Provide a coherent and informative summary that captures the essential points of the text. Ensure clarity, brevity, and accuracy in the summary.", message=message)
+        return self.generic_handler(system_prompt="Given a set of paragraphs, summarize the main ideas and key information concisely in less than 300 words. Provide a coherent and informative summary that captures the essential points of the text. Ensure clarity, brevity, and accuracy in the summary.", message=message)
 
     def handle_intent_classification(self, message, intents):
         return self.generic_handler(system_prompt=f"Given the input message, determine its intent category. If the message explicitly requests a summary of the document, respond with 'SUMMARIZATION'; otherwise, respond with 'GENERAL'. Do not provide additional commentary.", message=message)
