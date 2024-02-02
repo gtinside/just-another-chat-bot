@@ -54,3 +54,6 @@ https://github.com/gtinside/just-another-chat-bot/assets/9381570/5578c91a-e042-4
 5. User input query and the summay is sent to LLM to get the final answer, which is then sent back to user.
 
 #### Demo
+https://github.com/gtinside/just-another-chat-bot/assets/9381570/7cced996-f0ca-48dc-8c15-8f95c7a22855
+
+
