@@ -54,18 +54,11 @@ class RequestHandler(BaseHTTPRequestHandler):
         # Step 1 is to idenity the type of request
         try:
             if filepath:
-                intent = RequestHandler.intent_classifier.classify_intent(query)
-                if intent == Intent.SUMMARIZATION:
-                    message = RequestHandler.summary_generator.generate_summary(filepath)
-                    summary = RequestHandler.llm_message_handler.handle_summarization(message)
-                    response = summary['choices'][0]['message']['content']
-                    self.wfile.write(bytes(response, "utf8"))
-                else:
-                    RequestHandler.embeddings_handler.embed_documents(filepath)
-                    message = RequestHandler.embeddings_handler.query_embeddings(query, filepath)
-                    summary = RequestHandler.llm_message_handler.handle_summarization(message)
-                    response = summary['choices'][0]['message']['content']
-                    self.wfile.write(bytes(response, "utf8"))
+                message = RequestHandler.summary_generator.generate_summary(filepath)
+                summary = RequestHandler.llm_message_handler.handle_summarization(message)
+                response_on_summary = RequestHandler.llm_message_handler.handle_query_on_summary(summary['choices'][0]['message']['content'], query)
+                response = response_on_summary['choices'][0]['message']['content']
+                self.wfile.write(bytes(response, "utf8"))
             else:
                 myDict = RequestHandler.web_search_handler.web_search(query)
                 url = [i for i in myDict.keys()]

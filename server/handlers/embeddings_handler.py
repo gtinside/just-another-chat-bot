@@ -21,11 +21,12 @@ class EmbeddingsHandler:
 
             # Step 2: is to generate embeddings for each line   
             line_embeddings = self.embeddings.embed_documents(lines)
-            self.collection.add(documents=lines, embeddings=line_embeddings, metadatas=metadata, ids=ids)
+            self.collection.add(documents=lines, embeddings= line_embeddings, metadatas=metadata, ids=ids)
         except Exception as e:
             print(e)
             raise ValueError("Error in embedding the document")
 
     def query_embeddings(self, query, file, num_of_results=5):
-        return self.collection.query(query_texts=[query], n_results=num_of_results, where={"source": file})
+        query = self.embeddings.embed_query(query)
+        return self.collection.query(query_embeddings=[query], n_results=num_of_results, where={"source": file})
        

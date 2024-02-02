@@ -48,8 +48,8 @@ The three predominant methods of summarization include:
 1. The user uploads a document in the application and submits a list of questions.
 2. The document undergoes parsing and is stored temporarily.
 3. The backend extracts text from the document and generates embeddings.
-4. These embeddings are then stored in ChromaDB.
-5. The submitted query is executed on the collection in ChromaDB.
-6. The response is forwarded to LLM for the final summary, which is then sent back to the user.
+4. The document is clustered using K-Means clustering.
+5. The representative chunks for each cluster are sent to LLM for summarization.
+5. User input query and the summay is sent to LLM to get the final answer, which is then sent back to user.
 
 #### Demo
