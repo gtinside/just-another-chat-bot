@@ -43,10 +43,6 @@ The three predominant methods of summarization include:
 #### Demo
 https://github.com/gtinside/just-another-chat-bot/assets/9381570/5578c91a-e042-4a4c-875d-003e4d4b2292
 
-
-
-
-
 ### Search within a document
 
 #### Workflow
