@@ -28,12 +28,12 @@ The three predominant methods of summarization include:
 1. Directly extracting the data and forwarding it to LLM for summarization. While suitable for smaller documents, this approach becomes costly and encounters token limitations for larger documents.
 2. Employing Langchain MapReduce to divide the document into segments, sending each part to LLM for summarization, and then consolidating the responses before sending them back to LLM for the final summary. Although easy to implement, this method exhibits high latency, requiring multiple invocations of LLM.
 3. Utilizing K-means vector clustering, the approach implemented in this project involves the following steps:
-    a. Segmenting the document into sections (paragraphs were used as sections in this case).
-    b. Vectorizing each section.
-    c. Employing K-means clustering to label and cluster the sections, with the number of clusters varying based on the document type.
-    d. Identifying the representative chunk from each cluster.
-    e. Combining all the representative chunks from different clusters.
-    f. Sending the consolidated representative chunk to LLM for the final summary.
+    - Segmenting the document into sections (paragraphs were used as sections in this case).
+    - Vectorizing each section.
+    - Employing K-means clustering to label and cluster the sections, with the number of clusters varying based on the document type.
+    - Identifying the representative chunk from each cluster.
+    - Combining all the representative chunks from different clusters.
+    - Sending the consolidated representative chunk to LLM for the final summary.
 
 #### Workflow
 1. The user submits a document in the application and requests summarization.
