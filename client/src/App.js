@@ -7,6 +7,8 @@ import {
       MessageList,
       MessageHeader
     } from "@minchat/react-chat-ui";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Settings from './Settings';
 
 function App() {
   const [messages, setMessages] = useState([
@@ -79,19 +81,26 @@ function App() {
   };
 
   return (
-    <MinChatUiProvider theme="#6ea9d7">
-      <MainContainer style={{ height: '100vh' }}>
-        <MessageContainer>
-          <MessageHeader />
-          <MessageList
-            currentUserId='user'
-            messages={messages}
-          />
-          <input type="text" name="fileName" value={fileName} readOnly />
-          <MessageInput placeholder="Type message here" onSendMessage={handleSubmit} onAttachClick={uploadFile}/>
-        </MessageContainer>
-      </MainContainer>
-    </MinChatUiProvider>
+    <Router>
+      <Routes>
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/" element={
+          <MinChatUiProvider theme="#6ea9d7">
+            <MainContainer style={{ height: '100vh' }}>
+              <MessageContainer>
+                <MessageHeader />
+                <MessageList
+                  currentUserId='user'
+                  messages={messages}
+                />
+                <input type="text" name="fileName" value={fileName} readOnly />
+                <MessageInput placeholder="Ask a question or type '/' for commands" onSendMessage={handleSubmit} onAttachClick={uploadFile}/>
+              </MessageContainer>
+            </MainContainer>
+          </MinChatUiProvider>
+        } />
+      </Routes>
+    </Router>
   )
 }
 

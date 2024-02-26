@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 .venv
+venv
+.vscode
 
 # testing
 /coverage
@@ -74,3 +76,4 @@ dist/**
 *.xlf
 package.nls.*.json
 l10n/
+server/.venv/*

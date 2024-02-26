@@ -2,11 +2,11 @@ import re
 import textract
 from sklearn.cluster import KMeans
 from scipy.spatial import distance
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 
 class SummaryGenerator:
     def __init__(self):
-        self.embeddings = HuggingFaceEmbeddings()
+        self.embeddings = HuggingFaceEmbedding()
     
     def generate_summary(self, file):
         # Step 1: is to split the document into sections, textract returuns the text as byte, hence decoding it to utf-8

@@ -1,8 +1,8 @@
-openai
 microsoft-bing-websearch
-langchain
-pypdf
-sentence_transformers
-textract
 chromadb
+llama-index
+llama-index-embeddings-huggingface
+llama-index-vector-stores-chroma
+peewee
+textract
 scikit-learn

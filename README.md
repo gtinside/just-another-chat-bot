@@ -10,6 +10,25 @@ The bot enables you to explore the web, condense information, and search through
 - Bing APIs SDK for Python
 - AnyScale API
 - ChromaDB (InMemory)
+- OpenAI (the key needs to be set)
+
+### How to?
+- Run client locally,  
+```
+cd client
+npm start
+```
+- Run server locally (recommended to use launch.json)
+```
+python3 main.py
+```
+
+
+### Functionalities
+- General Internet Search
+- File Summarization
+- Search within a document
+- Semantic search on multiple documents
 
 ### General Internet Search
 
@@ -22,7 +41,7 @@ The bot enables you to explore the web, condense information, and search through
 #### Demo
 https://github.com/gtinside/just-another-chat-bot/assets/9381570/8ac80db1-01f7-43c5-a7cb-99d3ea977026
 
-### Summarization
+### File Summarization
 The three predominant methods of summarization include:
 
 1. Directly extracting the data and forwarding it to LLM for summarization. While suitable for smaller documents, this approach becomes costly and encounters token limitations for larger documents.
@@ -57,3 +76,13 @@ https://github.com/gtinside/just-another-chat-bot/assets/9381570/5578c91a-e042-4
 https://github.com/gtinside/just-another-chat-bot/assets/9381570/7cced996-f0ca-48dc-8c15-8f95c7a22855
 
 
+### pip errors
+```
+source venv/bin/activate
+pip freeze | xargs pip uninstall -y
+pip install llama-index
+```
+
+### TODO
+1. Better exception handling specially in main.py and handlers package
+2. Implement intent classifier for query and command using Instructor
