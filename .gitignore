@@ -77,3 +77,4 @@ dist/**
 package.nls.*.json
 l10n/
 server/.venv/*
+events.db

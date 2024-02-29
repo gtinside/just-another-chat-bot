@@ -54,6 +54,8 @@ class RequestHandler(BaseHTTPRequestHandler):
                 
             # Once all the files are copied, we can start processing the files
             self.embeddings_handler.embed_documents(dir)
+            # Remove the directory
+            os.system(f'rm -rf {dir}')
             self.wfile.write(bytes("Files uploaded successfully, use command /search to query the data", "utf8"))
         else:
             # request for everything thing else
@@ -92,7 +94,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                     self.wfile.write(bytes(response, "utf8"))
                 elif command_type == Command.SEARCH_EMBEDDINGS:
                     response = RequestHandler.embeddings_handler.query_embeddings(query)
-                    self.wfile.write(bytes(response, "utf8"))
+                    self.wfile.write(bytes(str(response), "utf8"))
                 else:
                     myDict = RequestHandler.web_search_handler.web_search(query)
                     url = [i for i in myDict.keys()]

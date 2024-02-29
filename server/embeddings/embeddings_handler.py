@@ -8,8 +8,8 @@ from llama_index.core.vector_stores import MetadataFilters, ExactMatchFilter
 
 class EmbeddingsHandler:
     def __init__(self):
-        self.client = chromadb.Client()
-        self.collection = self.client.create_collection("documents")
+        self.client = chromadb.PersistentClient(path="./documents_db")
+        self.collection = self.client.create_collection("documents", get_or_create=True)
         self.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-base-en-v1.5")
     
     def embed_documents(self, doc_location):
@@ -24,11 +24,18 @@ class EmbeddingsHandler:
 
         vector_store = ChromaVectorStore(chroma_collection=self.collection)
         storage_context = StorageContext.from_defaults(vector_store=vector_store)
-        self.index = VectorStoreIndex.from_documents(
+        VectorStoreIndex.from_documents(
             documents, storage_context=storage_context, embed_model=self.embed_model, service_context=service_context
         )
 
-    def query_embeddings(self, query, num_of_results=5):
-        query = self.embeddings.embed_query(query)
-        return self.collection.query(query_embeddings=[query], n_results=num_of_results)
-       
+
+    def query_embeddings(self, query):
+        vector_store = ChromaVectorStore(chroma_collection=self.collection)
+        storage_context = StorageContext.from_defaults(vector_store=vector_store)
+        index = VectorStoreIndex.from_vector_store(
+            vector_store,
+            embed_model=self.embed_model,
+            storage_context=storage_context
+        )
+        query_engine = index.as_query_engine()
+        return query_engine.query(query)

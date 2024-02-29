@@ -86,3 +86,5 @@ pip install llama-index
 ### TODO
 1. Better exception handling specially in main.py and handlers package
 2. Implement intent classifier for query and command using Instructor
+3. Improve deployment strategy
+4. Apply stylesheet to Settings page

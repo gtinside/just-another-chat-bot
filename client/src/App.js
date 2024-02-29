@@ -59,7 +59,7 @@ function App() {
         setMessages(prevMessages => [
           ...prevMessages,
           {
-            text: message,
+            text: message.replace(/\/\w+/g, ''),
             user: {
               id: 'user',
               name: 'You',
