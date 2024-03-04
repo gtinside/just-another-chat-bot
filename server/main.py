@@ -39,6 +39,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             # To make this resillient, copy all the files to local directory 
             requestId = form['requestId'].value
             dir = f'/tmp/{requestId}/'
+            completed = True
             for fileitem in form['file']:
                 try:
                     if fileitem.file and fileitem.filename:
@@ -50,13 +51,17 @@ class RequestHandler(BaseHTTPRequestHandler):
                             f.write(file.read())
                         Persistence.create_event(fileitem.filename, EventType.UPLOAD, username="admin")
                 except Exception as e:
+                    completed = False
                     print(f'Error processing file {fileitem.filename} - {e}')
                 
+            if not completed:
+                self.wfile.write(bytes("Error processing files, try again later", "utf8"))
+                return
             # Once all the files are copied, we can start processing the files
             self.embeddings_handler.embed_documents(dir)
             # Remove the directory
             os.system(f'rm -rf {dir}')
-            self.wfile.write(bytes("Files uploaded successfully, use command /search to query the data", "utf8"))
+            self.wfile.write(bytes("Files uploaded successfully", "utf8"))
         else:
             # request for everything thing else
             # Parse the form data posted        

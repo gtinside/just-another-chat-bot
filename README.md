@@ -75,6 +75,18 @@ https://github.com/gtinside/just-another-chat-bot/assets/9381570/5578c91a-e042-4
 #### Demo
 https://github.com/gtinside/just-another-chat-bot/assets/9381570/7cced996-f0ca-48dc-8c15-8f95c7a22855
 
+### Semantic search on multiple documents
+
+#### Workflow
+1. The user navigates to settings page and upload the directory with files in it.
+2. File events are created in SQLite Events table 
+3. The server process the files and do the following:
+    a. Chunking - 100 chunks per file
+    b. Associate metadata with each chunk
+    c. Generate and store embeddings in chromadb
+
+#### Demo
+
 
 ### pip errors
 ```
